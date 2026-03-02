@@ -1,15 +1,8 @@
-# ============================================================================
-# ANÁLISE DE DADOS: Jobs and Salaries in Data Science
-# ============================================================================
-
 import pandas as pd
 from pathlib import Path
 
 # 1. Carregar os dados
-# ============================================================================
-print("=" * 80)
 print("1. CARREGANDO DADOS")
-print("=" * 80)
 
 # usar o CSV que está no mesmo diretório do script (resolve sem condicionais)
 base_dir = Path(__file__).resolve().parent
@@ -22,7 +15,6 @@ print("\nÚltimas linhas:")
 print(df.tail())
 
 # 2. Verificar tipos de dados
-# ============================================================================
 print("\n" + "=" * 80)
 print("2. INFORMAÇÕES SOBRE O DATAFRAME")
 print("=" * 80)
@@ -31,7 +23,6 @@ print("\nTipos de dados:")
 print(df.dtypes)
 
 # 3. Verificar valores faltantes e duplicados
-# ============================================================================
 print("\n" + "=" * 80)
 print("3. VERIFICAÇÃO DE QUALIDADE DOS DADOS")
 print("=" * 80)
@@ -43,7 +34,6 @@ print("\nVerificando duplicatas:")
 print(df.T.duplicated())
 
 # 4. Estatísticas descritivas
-# ============================================================================
 print("\n" + "=" * 80)
 print("4. ESTATÍSTICAS DESCRITIVAS")
 print("=" * 80)
@@ -51,7 +41,6 @@ print("=" * 80)
 print(df.describe())
 
 # 5. Traduzir colunas para Português
-# ============================================================================
 print("\n" + "=" * 80)
 print("5. TRADUÇÃO DAS COLUNAS")
 print("=" * 80)
@@ -76,7 +65,6 @@ print("\nColunas traduzidas:")
 print(df_pt_br.columns.tolist())
 
 # 6. Análise temporal (usando coluna de ano)
-# ============================================================================
 print("\n" + "=" * 80)
 print("6. ANÁLISE TEMPORAL")
 print("=" * 80)
@@ -89,7 +77,6 @@ print(f"Início: {df_pt_br['ano_trabalho'].min()}")
 print(f"Fim: {df_pt_br['ano_trabalho'].max()}")
 
 # 7. Análise de salários
-# ============================================================================
 print("\n" + "=" * 80)
 print("7. ANÁLISE DE SALÁRIOS")
 print("=" * 80)
@@ -100,19 +87,12 @@ print(df_pt_br[['salario', 'salario_dolar', 'moeda_salario']].head(10))
 print("\nResumo de salários em USD:")
 print(df_pt_br['salario_dolar'].describe())
 
-# ============================================================================
-print("\n" + "=" * 80)
-print("ANÁLISE CONCLUÍDA")
-print("=" * 80)
 
-# ============================================================================
 # 9. ANÁLISE DAS CATEGORIAS PROFISSIONAIS
-# ============================================================================
 print("\n" + "=" * 80)
 print("9. ANÁLISE DAS CATEGORIAS PROFISSIONAIS")
 print("=" * 80)
 
-# Agrupar por categoria e contar (usa o DataFrame traduzido `df_pt_br`)
 df_categoria = (
     df_pt_br.groupby('categoria_cargo')
     .size()
