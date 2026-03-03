@@ -16,12 +16,14 @@ def salario_internacional_simples(nome_pais, salario_local, ano=date.today().yea
     if not id_pais:
         raise ValueError(f"País '{nome_pais}' não encontrado.")
 
+    # Sempre busca o fator PPC para o ano solicitado.
     fator_ppc = wb.data.fetch('PA.NUS.PPP', id_pais, time=ano)
     valor_fator = list(fator_ppc)[0]['value']
     if valor_fator is None:
         raise ValueError("Dados de PPC não disponíveis para este ano/país.")
 
-    return salario_local / valor_fator
+    # Retorna o salário convertido e também o fator usado (útil para cache)
+    return [salario_local / valor_fator, valor_fator]
 
 
 def taxa_media_inflacao(nome_pais, ano_inicio, ano_fim):
