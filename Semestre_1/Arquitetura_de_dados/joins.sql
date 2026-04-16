@@ -203,8 +203,252 @@ full outer join disciplinas d on ad.id_disciplina = d.id_disciplina;
 -- =================================
 
 select
-d.id_disciplina,
-d.nome_disciplina as disciplina
+    d.id_disciplina,
+    d.nome_disciplina as disciplina
 from disciplinas d
 left join alunos_disciplinas ad on d.id_disciplina = ad.id_disciplina
 where ad.id_disciplina is null;
+
+
+-- =================================
+-- =================================
+-- 1. DISTINCT
+-- =================================
+-- ================================
+
+select distinct id_curso 
+from alunos
+where id_curso is not null;
+
+-- =================================
+-- 2. DISTINCT com JOIN
+-- Mostrar os cursos que possuem alunos matriculados
+-- =================================
+
+select distinct c.nome_curso
+from alunos a
+inner join cursos c
+on a.id_curso = c.id_curso;
+
+-- =================================
+-- 3. DISTINCT com mais de uma coluna
+-- DISTINCT considera a combinação de todas as colunas para eliminar duplicatas
+-- =================================
+
+select distinct 
+    id_curso,
+    nome_aluno
+from alunos
+where id_curso is not null;
+
+-- =================================
+-- 4. ORDER BY com mais de uma coluna
+-- =================================
+
+select 
+    nome_aluno,
+    id_curso
+from alunos
+where id_curso is not null
+order by id_curso ASC, nome_aluno ASC;
+
+-- =================================
+-- 5. LIMIT
+-- Mostrar apenas os 3 primeiros alunos
+-- =================================
+
+select *
+from alunos
+limit 3;
+
+-- =================================
+-- 6. Order by + Limit
+-- Mostrar os 3 primeiros alunos ordenados por nome
+-- =================================
+
+select *
+from alunos
+order by nome_aluno ASC
+limit 3;
+
+-- =================================
+-- 7. Multiplas filtros com AND
+-- Alunos do curso 1 e com id maior que 1
+-- =================================
+select *
+from alunos
+where id_curso = 1 and id_aluno > 1;
+
+-- =================================
+-- 8. Multiplas filtros com OR
+-- Alunos do curso 1 ou do curso 2
+-- =================================
+
+select *
+from alunos
+where id_curso = 1 or id_curso = 2;
+
+-- =================================
+-- 9. AND + is not null
+-- Alunos que tem curso e ele são do curso 2
+-- =================================
+
+select *
+from alunos
+where id_curso = 2 and id_curso is not null;
+
+-- =================================
+-- 10. OR + AND (Sem parênteses)
+-- Alunos do curso 1 ou do curso 2 e com id maior que 2
+-- =================================
+
+select *
+from alunos
+where id_curso = 1 or id_curso = 2 and id_aluno > 2;
+
+-- =================================
+-- 11. OR + AND (Com parênteses)
+-- Alunos do curso 1 ou do curso 2 e com id maior que 2
+-- =================================
+
+select *
+from alunos
+where (id_curso = 1 or id_curso = 2) and id_aluno > 2;
+
+-- =================================
+-- 12. CONSULTA completa com JOIN, WHERE, ORDER BY
+-- =================================
+
+select
+a.id_aluno, a.nome_aluno as aluno,
+c.nome_curso as curso
+from alunos a
+inner join cursos c on a.id_curso = c.id_curso;
+
+
+-- ================================================
+-- 13. Group by
+-- Quantidade de alunos por curso
+-- ================================================
+select 
+	c.nome_curso,
+    count(a.id_aluno) as quantidade_alunos
+from cursos c
+left join alunos a 
+on a.id_curso = c.id_curso
+group by c.nome_curso; 
+
+-- ================================================
+-- 14. Having
+-- Mostrar apenas cursos com mais de 1 aluno
+-- ================================================
+select 
+	c.nome_curso,
+    count(a.id_aluno) as quantidade_alunos
+from cursos c
+left join alunos a 
+on a.id_curso = c.id_curso
+group by c.nome_curso
+having count(a.id_aluno) > 1;
+
+-- ================================================
+-- 15. Case when 
+-- Classificar alunos conforme possuem ou não curso 
+-- ================================================
+select 
+	nome_aluno,
+    case 
+		when id_curso is null then "Sem Curso"
+        else "Com Curso"
+	end as situacao
+from alunos; 
+
+-- ================================================
+-- 16. Case when com mais de uma condição
+-- Classificar alunos conforme o curso
+-- ================================================
+select 
+	nome_aluno,
+    case 
+		when id_curso = 1 then "Curso ADS"
+        when id_curso = 2 then "Curso Engenharia"
+        when id_curso = 3 then "Curso Direito"
+        when id_curso = 4 then "Curso Medicina"
+        else "Sem Curso"
+	end as classificacao
+from alunos; 
+
+-- ================================================
+-- 17. Case when + Relatorio
+-- Classificar cursos pela quantidade de alunos
+-- ================================================
+select 
+	c.nome_curso,
+    case 
+		when count(a.id_aluno) >= 2 then "Turma Maior"
+        when count(a.id_aluno) = 2 then "Turma Menor"
+        else "Sem Alunos"
+	end as situacao_turma
+from cursos c
+left join alunos a
+	on c.id_curso = a.id_curso
+group by c.nome_curso; 
+
+ -- ================================================
+-- 18. CTE
+-- Funciona como uma consulta temporária
+-- ================================================
+with alunos_com_curso as(
+	select 
+    id_aluno, nome_aluno, id_curso
+    from alunos
+    where id_curso is not null
+)
+select * from alunos_com_curso;
+
+-- ================================================
+-- 19. CTE com JOIN
+-- ================================================
+with alunos_com_curso as(
+	select 
+    id_aluno, nome_aluno, id_curso
+    from alunos
+    where id_curso is not null
+)
+select 
+a.nome_aluno as aluno,
+c.nome_curso as curso
+from alunos_com_curso ac
+inner join cursos c
+on ac.id_curso = c.id_curso;
+
+-- ================================================
+-- 20. CTE + gregação
+-- Calcular total de alunos por curso e depois filtra
+-- ================================================
+
+with alunos_com_curso as(
+    select 
+        id_curso
+        COUNT(id_aluno) as total
+    from alunos
+    where id_curso is not null
+    group by id_curso
+),
+select *
+from total_por_curso
+where total > 1;
+
+-- ================================================
+-- 21. WINDOW functions - ROW_NUMBER
+-- Gera uma numeração linha a linha
+-- Sem agrupar os dados
+-- vamos criar um ranking alfabetico geral
+-- ================================================
+
+select
+    nome_aluno,
+    row_number() over (order by nome_aluno ASC) as ranking_alfabetico
+from alunos;
+
+ 
