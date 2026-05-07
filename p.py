@@ -29,18 +29,19 @@ def merge_sort(lista):
 
             k += 1
 
+        
         # Verifica se restou algum elemento
         while i < len(esquerda):
             lista[k] = esquerda[i]
             i += 1
             k += 1
-            print(f"Mesclando: {lista[:k+1]}")
+            print(f"Mesclando--: {lista[:k+1]}")
 
         while j < len(direita):
             lista[k] = direita[j]
             j += 1
             k += 1
-            print(f"Mesclando: {lista[:k+1]}")
+            print(f"Mesclando- -: {lista[:k+1]}")
 
     return lista
 
