@@ -1,0 +1,100 @@
+RELATÓRIO DE ESTRUTURA DE TABELAS (CSV)
+============================================================
+
+TABELA: avaliacoes.csv
+----------------------------------------
+  - review_id                 | Tipo: str
+  - order_id                  | Tipo: str
+  - review_score              | Tipo: int64
+  - review_comment_title      | Tipo: str
+  - review_comment_message    | Tipo: str
+  - review_creation_date      | Tipo: str
+  - review_answer_timestamp   | Tipo: str
+
+============================================================
+
+TABELA: clientes.csv
+----------------------------------------
+  - customer_id               | Tipo: str
+  - customer_unique_id        | Tipo: str
+  - customer_zip_code_prefix  | Tipo: int64
+  - customer_city             | Tipo: str
+  - customer_state            | Tipo: str
+
+============================================================
+
+TABELA: geolocalizacao.csv
+----------------------------------------
+  - geolocation_zip_code_prefix | Tipo: int64
+  - geolocation_lat           | Tipo: float64
+  - geolocation_lng           | Tipo: float64
+  - geolocation_city          | Tipo: str
+  - geolocation_state         | Tipo: str
+
+============================================================
+
+TABELA: itens_pedidos.csv
+----------------------------------------
+  - order_id                  | Tipo: str
+  - order_item_id             | Tipo: int64
+  - product_id                | Tipo: str
+  - seller_id                 | Tipo: str
+  - shipping_limit_date       | Tipo: str
+  - price                     | Tipo: float64
+  - freight_value             | Tipo: float64
+
+============================================================
+
+TABELA: pagamentos.csv
+----------------------------------------
+  - order_id                  | Tipo: str
+  - payment_sequential        | Tipo: int64
+  - payment_type              | Tipo: str
+  - payment_installments      | Tipo: int64
+  - payment_value             | Tipo: float64
+
+============================================================
+
+TABELA: pedidos.csv
+----------------------------------------
+  - order_id                  | Tipo: str
+  - customer_id               | Tipo: str
+  - order_status              | Tipo: str
+  - order_purchase_timestamp  | Tipo: str
+  - order_approved_at         | Tipo: str
+  - order_delivered_carrier_date | Tipo: str
+  - order_delivered_customer_date | Tipo: str
+  - order_estimated_delivery_date | Tipo: str
+
+============================================================
+
+TABELA: produtos.csv
+----------------------------------------
+  - product_id                | Tipo: str
+  - product_category_name     | Tipo: str
+  - product_name_lenght       | Tipo: int64
+  - product_description_lenght | Tipo: int64
+  - product_photos_qty        | Tipo: int64
+  - product_weight_g          | Tipo: int64
+  - product_length_cm         | Tipo: int64
+  - product_height_cm         | Tipo: int64
+  - product_width_cm          | Tipo: int64
+
+============================================================
+
+TABELA: tabela_auxiliar.csv
+----------------------------------------
+  - product_category_name     | Tipo: str
+  - product_category_name_english | Tipo: str
+
+============================================================
+
+TABELA: vendedores.csv
+----------------------------------------
+  - seller_id                 | Tipo: str
+  - seller_zip_code_prefix    | Tipo: int64
+  - seller_city               | Tipo: str
+  - seller_state              | Tipo: str
+
+============================================================
+
