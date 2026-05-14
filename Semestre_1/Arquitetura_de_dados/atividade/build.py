@@ -64,4 +64,66 @@ def normalizar_builds_malenia():
         print(f"Erro ao processar: {e}")
 
 # Rodar a função
-normalizar_builds_malenia()
+#normalizar_builds_malenia()
+
+def normalizar_phantoms():
+    diretorio_atual = os.path.dirname(os.path.abspath(__file__))
+    arquivo_malenia = os.path.join(diretorio_atual, 'malenia_normalizado.csv')
+    arquivo_phantoms = os.path.join(diretorio_atual, 'phantoms.csv')
+
+    try:
+        with open(arquivo_malenia, mode='r', encoding='utf-8') as f_in:
+            leitor = csv.DictReader(f_in)
+            campos = leitor.fieldnames
+            
+            # Novos campos para a tabela principal: remover colunas de phantom e adicionar id_phantom
+            campos_main = [c for c in campos if c not in ['Phantom_Count', 'Phantom_Build', 'Phantom_Death']]
+            campos_main.append('id_phantom')
+            
+            phantom_data = []
+            main_data = []
+            
+            for linha in leitor:
+                id_reg = linha['id_registro']
+                phantom_count = linha.get('Phantom_Count', '').strip()
+                
+                if phantom_count:
+                    phantom_data.append({
+                        'id_phantom': id_reg,
+                        'Phantom_Count': linha['Phantom_Count'],
+                        'Phantom_Build': linha['Phantom_Build'],
+                        'Phantom_Death': linha['Phantom_Death']
+                    })
+                    linha['id_phantom'] = id_reg
+                else:
+                    linha['id_phantom'] = ''
+                
+                # Remover as colunas de phantom da linha
+                for c in ['Phantom_Count', 'Phantom_Build', 'Phantom_Death']:
+                    linha.pop(c, None)
+                
+                main_data.append(linha)
+        
+        # Criar tabela de phantoms
+        with open(arquivo_phantoms, mode='w', encoding='utf-8', newline='') as f:
+            escritor = csv.DictWriter(f, fieldnames=['id_phantom', 'Phantom_Count', 'Phantom_Build', 'Phantom_Death'])
+            escritor.writeheader()
+            escritor.writerows(phantom_data)
+        
+        # Reescrever malenia_normalizado.csv
+        with open(arquivo_malenia, mode='w', encoding='utf-8', newline='') as f:
+            escritor = csv.DictWriter(f, fieldnames=campos_main)
+            escritor.writeheader()
+            escritor.writerows(main_data)
+        
+        print("\n✅ NORMALIZAÇÃO DE PHANTOMS CONCLUÍDA!")
+        print(f"1. Criada: 'phantoms.csv' (Tabela de fantasmas)")
+        print(f"2. Atualizada: 'malenia_normalizado.csv' (Removidas colunas de phantom, adicionado id_phantom)")
+        
+    except Exception as e:
+        print(f"Erro ao processar phantoms: {e}")
+
+# Rodar a nova função
+normalizar_phantoms()
+
+
