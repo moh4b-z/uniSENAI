@@ -13,6 +13,9 @@ https://blossom-cotton-e20.notion.site/Metodologias-geis-3102805a4c0580cd99f5c1e
 Felipe - Sistemas Operacionais:
 https://blossom-cotton-e20.notion.site/Sistemas-Operacionais-3112805a4c0580179a90e80e700736fd
 
+Felipe - Versionamento:
+https://blossom-cotton-e20.notion.site/Versionamento-3112805a4c05804995f4e212a33e270b?source=copy_link
+
 Felipe - Projeto Integrador Interdisciplinar 1
 https://blossom-cotton-e20.notion.site/Projeto-Integrador-Interdisciplinar-1-3112805a4c058071a425e4052c024a94
 
