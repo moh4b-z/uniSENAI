@@ -1,0 +1,134 @@
+Instruções: Crie um notebook (Jupyter) do zero,
+utilize os recursos de Markdown para organizar o código e personalizar seu
+notebook, faça as anotações e explicações de cada etapa. 
+
+
+Não use assistente de IA para criar os códigos, caso tenha alguma dificuldade, anote
+a sua dificuldade para discutirmos na aula. Haverá tempo para concluir
+os exercícios durante a aula.
+
+
+Utilizando
+Python e SQLite, faça:
+
+
+Parte 1: Configuração e Criação do Banco de Dados
+
+
+Criação
+do banco de dados e conexão: Crie um novo banco de dados SQLite
+chamado empresa.db.
+Conecte-se a ele e verifique se a conexão foi bem concluída.
+Criação
+de tabela (DDL):
+Crie uma tabela chamada funcionários com as seguintes colunas:
+id(INTEGER,
+chave primária, incremento automático)
+nome(TEXTO, não nulo)
+cargo(TEXTO, não nulo)
+salario(REAL)
+data_contratacao(TEXTO, não nulo)
+
+Verificação
+da estrutura da tabela: Escreva um comando para obter a estrutura da tabela funcionários
+e exiba-a para confirmar se as colunas foram criadas corretamente.
+
+
+Parte 2: Manipulação de Dados (DML)
+
+
+Inserção
+de dados (INSERT): Insira pelo menos 5 registros na tabela funcionários com
+dados fictícios.
+Consulta
+de dados (SELECT): Escreva um comando SELECT para exibir todos os registros da tabela funcionários.
+Filtro
+com WHERE:
+
+Selecione apenas os funcionários com salário superior a R$ 5.000.
+Selecione os funcionários que trabalham como 'Gerente'.
+
+Atualização
+de dados (UPDATE): Atualizar o salário de um funcionário específico.
+Por exemplo, aumentar o salário de ‘João’ em 10%.
+
+Exclusão
+de dados (DELETE): Exclui um dos funcionários que você inseriu.
+Contagem
+de registros: Conte o número total de funcionários na tabela.
+
+
+Parte 3: Agregação e Ordenação
+
+
+Funções
+de agregação ( SUM, AVG, MAX, MIN):
+Calcule a soma total dos salários.
+Calcule o salário médio da empresa.
+Encontre o salário mais alto e o mais baixo.
+
+Agrupamento de dados ( GROUP BY):
+Calcule um salário médio para cada cargo.
+Conte quantos funcionários existem em cada carga.
+
+Ordenação
+( ORDER BY):
+Selecione todos os funcionários e ordens de maior para o menor salário.
+Selecione todos os funcionários e ordene-os por nome em ordem alfabética.
+
+
+Parte 4: Transações e ROLLBACK
+
+
+Simulação de transação:
+Iniciar uma transação.
+Insira um novo funcionário na tabela.
+Simule um erro (por exemplo, dividindo por zero ou forçando um erro) para
+acionar o except.
+Utilize conn.rollback()para reverter a transação e garantir que o novo
+funcionário não seja salvo no banco de dados.
+
+Transação
+com COMMIT:
+Inicie uma nova transação.
+Insira um novo funcionário.
+Não force o erro e use conn.commit()para salvar a operação permanentemente.
+Verifique se o novo funcionário agora faz parte da tabela.
+
+Parte 5: Joins e Múltiplas Tabelas
+
+
+Criação de uma segunda tabela:
+Crie uma nova tabela chamada departamentos com as colunas:
+id(INTEGER,
+chave primária, incremento automático)
+nome_departamento(TEXTO, não nulo)
+localizacao(TEXTO)
+
+Insira pelo menos 3 departamentos.
+
+Adição
+de chave estrangeira (ALTER TABLE):
+Use ALTER TABLE para adicionar uma nova coluna departamento_id na tabela funcionarios.
+Esta coluna deve ser uma chave estrangeira que se refere id à tabela
+departamentos.
+
+Atualização de dados:
+Atualize uma tabela funcionarios para fornecer departamento_id a cada funcionário, conectando-os aos departamentos que você criou.
+
+INNER JOIN:
+Crie uma consulta que combine as tabelas funcionarios e departamentos para exibir o
+nome de cada funcionário junto com o nome do seu departamento.
+LEFT JOIN:
+Crie uma nova tabela chamada projetos com as colunas id e nome_projeto.
+Crie uma tabela de particular funcionarios_projetos com funcionario_id e projeto_id para representar a
+relação de N para N.
+Use um LEFT JOIN para listar todos os funcionários e, se houver, o nome do
+projeto em que estão.
+
+Parte 6: DCL (Controle de Dados)
+
+
+Conceito de DCL:
+No seu notebook, explique em markdown a diferença entre DDL, DML, DQL e DCL,
+focando em para que o DCL seja usado.
