@@ -1,0 +1,9 @@
+{
+    "id_pedido": 1002,
+    "id_cliente": 26,
+    "id_produto": 502,
+    "quantidade": 2,
+    "preco_unitario": 1800.0,
+    "forma_pagamento": "pix",
+    "data_hora": "2026-08-12 15:10:00"
+}

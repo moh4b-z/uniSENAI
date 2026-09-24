@@ -1,0 +1,5 @@
+id_pedido,id_cliente,id_produto,quantidade,preco_unitario,forma_pagamento,data_hora,nome,cidade,produto,categoria,valor_total,data,hora
+1001,25,501,1,4500.0,cartao,2026-08-12 14:32:00,Ana,São Paulo,Notebook,Informática,4500.0,2026-08-12,14
+1002,26,502,2,1800.0,pix,2026-08-12 15:10:00,Bruno,Campinas,Monitor,Informática,3600.0,2026-08-12,15
+1003,27,503,3,150.0,cartao,2026-08-12 15:25:00,Carla,Santos,Teclado,Acessórios,450.0,2026-08-12,15
+1004,25,502,1,1800.0,pix,2026-08-12 16:05:00,Ana,São Paulo,Monitor,Informática,1800.0,2026-08-12,16

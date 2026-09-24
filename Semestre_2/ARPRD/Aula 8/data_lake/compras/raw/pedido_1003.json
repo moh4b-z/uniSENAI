@@ -1,0 +1,9 @@
+{
+    "id_pedido": 1003,
+    "id_cliente": 27,
+    "id_produto": 503,
+    "quantidade": 3,
+    "preco_unitario": 150.0,
+    "forma_pagamento": "cartao",
+    "data_hora": "2026-08-12 15:25:00"
+}
