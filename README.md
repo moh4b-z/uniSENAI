@@ -28,3 +28,5 @@ Semestre 2:
 - [Redes de Computadores](https://witty-allspice-aee.notion.site/fb496c24c5b3827c8416010fad81a1f8?v=70796c24c5b3834eabbf089bc3323648&source=copy_link)
 
 - [Felipe: Projeto Integrador Interdisciplinar 2](https://blossom-cotton-e20.notion.site/Semana-1-Apresenta-o-do-PII2-01-10-3ed2805a4c0580b99a6dc1070e2b6e70)
+
+-  [Felipe: Apresentação - Projeto de Extensão com a AACD](https://blossom-cotton-e20.notion.site/Apresenta-o-Projeto-de-Extens-o-com-a-AACD-4792805a4c05826aa439812bc037649f)
