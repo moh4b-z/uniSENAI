@@ -143,3 +143,20 @@ class Musica:
         self._ano = self._validae_int(novo_ano, "ano")
         print(f"Ano de lançamento atualizado para: {self._ano}") 
     #=========================================================================================#       
+
+    def _normalizar(texto):
+        return texto.strip().lower()
+
+    def verificar_duplicidade(self, musica):
+        if not  isinstance(musica, Musica):
+            raise ValueError("O objeto adicionado deve ser uma instância da classe Musica.")
+
+        for cadastrada in self.musicas:
+            if(
+                self._normalizar(cadastrada.nome) == self._normalizar(musica.nome) and
+                self._normalizar(cadastrada.cantor) == self._normalizar(musica.cantor) and
+                self._normalizar(cadastrada.genero) == self._normalizar(musica.genero) and
+                (cadastrada.ano) == (musica.ano)
+            ):
+                return True
+        return False
